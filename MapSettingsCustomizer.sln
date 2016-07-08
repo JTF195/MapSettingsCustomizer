@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.25302.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MapSettingsCustomizerVB", "MapSettingsCustomizerVB\MapSettingsCustomizerVB.vbproj", "{EC4E4971-955F-4E18-8FE7-62A9DEBE0989}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapSettingsCustomizerCS", "MapSettingsCustomizerCS\MapSettingsCustomizerCS.csproj", "{56AD24F1-FFA0-41D9-95BB-F12FB67DDCA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC4E4971-955F-4E18-8FE7-62A9DEBE0989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4E4971-955F-4E18-8FE7-62A9DEBE0989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4E4971-955F-4E18-8FE7-62A9DEBE0989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4E4971-955F-4E18-8FE7-62A9DEBE0989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56AD24F1-FFA0-41D9-95BB-F12FB67DDCA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56AD24F1-FFA0-41D9-95BB-F12FB67DDCA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56AD24F1-FFA0-41D9-95BB-F12FB67DDCA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56AD24F1-FFA0-41D9-95BB-F12FB67DDCA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
