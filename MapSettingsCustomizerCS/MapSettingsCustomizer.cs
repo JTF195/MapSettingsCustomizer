@@ -47,7 +47,10 @@ namespace MapSettingsCustomizer
                 bool relOD = false;
 
                 bool oldMaps = false;
+
                 string nextArg = "";
+
+                //split arg array into "-switch arg"
                 foreach (string arg in args)
                 {
                     if (nextArg == "-create")
@@ -143,7 +146,7 @@ namespace MapSettingsCustomizer
                 int totalFiles = 0;
                 int completedFiles = 0;
                 int createdFiles = 0;
-                int deletedFiles = 0;
+                //int deletedFiles = 0; need this once I fix the output messages
                 int failedFiles = 0;
                 double filesPercent = 0;
                 string[] songFolders = Directory.GetDirectories(path);
@@ -175,226 +178,6 @@ namespace MapSettingsCustomizer
                                 {
                                     if (!File.Exists(currentFile.Replace("].osu", "__" + name + "__].osu")))
                                     {
-                                        filesPercent = Math.Round((completedFiles / totalFiles * 100.0), 2);
-                                        Console.Title = "Creating new beatmaps - " + completedFiles + "/" + totalFiles + " - " + filesPercent + "% complete.";
-                                        Application.DoEvents();
-                                        string beatmapContents = File.ReadAllText(currentFile);
-                                        int mapVersion = 0;
-                                        double oldHP = 0;
-                                        double oldCS = 0;
-                                        double oldAR = 0;
-                                        double oldOD = 0;
-                                        bool customMap = false;
-                                        try
-                                        {
-                                            mapVersion = Convert.ToInt32(Convert.ToString(Regex.Match(beatmapContents, "(?<=osu file format v)(\\d+)")));
-                                        }
-                                        catch
-                                        {
-                                        }
-                                        try
-                                        {
-                                            oldHP = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=//OldHP:)([ \\d.]+)")));
-                                            customMap = true;
-                                        }
-                                        catch
-                                        {
-                                            oldHP = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=HPDrainRate:)([ \\d.]+)")));
-                                        }
-                                        try
-                                        {
-                                            oldCS = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=//OldCS:)([ \\d.]+)")));
-                                            customMap = true;
-                                        }
-                                        catch
-                                        {
-                                            oldCS = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=CircleSize:)([ \\d.]+)")));
-                                        }
-                                        try
-                                        {
-                                            oldAR = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=//OldAR:)([ \\d.]+)")));
-                                            customMap = true;
-                                        }
-                                        catch
-                                        {
-                                            oldAR = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=ApproachRate:)([ \\d.]+)")));
-                                        }
-                                        try
-                                        {
-                                            oldOD = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=//OldOD:)([ \\d.]+)")));
-                                            customMap = true;
-                                        }
-                                        catch
-                                        {
-                                            oldOD = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=OverallDifficulty:)([ \\d.]+)")));
-                                        }
-                                        if (fromHP <= oldHP & oldHP <= toHP)
-                                        {
-                                            if (fromCS <= oldCS & oldCS <= toCS)
-                                            {
-                                                if (mapVersion >= 8)
-                                                {
-                                                    if (fromAR <= oldAR & oldAR <= toAR)
-                                                    {
-                                                        if (fromOD <= oldOD & oldOD <= toOD)
-                                                        {
-                                                            if (relHP == true)
-                                                            {
-                                                                if (newHP != 0)
-                                                                {
-                                                                    double tempHP = newHP + oldHP;
-                                                                    if (tempHP > 10)
-                                                                    {
-                                                                        tempHP = 10;
-                                                                    }
-                                                                    if (tempHP < 0)
-                                                                    {
-                                                                        tempHP = 0;
-                                                                    }
-                                                                    beatmapContents = beatmapContents.Replace("HPDrainRate:", "HPDrainRate:" + Convert.ToString(tempHP) + Environment.NewLine + "//OldHP:");
-                                                                }
-                                                            }
-                                                            else
-                                                            {
-                                                                beatmapContents = beatmapContents.Replace("HPDrainRate:", "HPDrainRate:" + Convert.ToString(newHP) + Environment.NewLine + "//OldHP:");
-                                                            }
-
-                                                            if (relCS == true)
-                                                            {
-                                                                if (newCS != 0)
-                                                                {
-                                                                    double tempCS = newCS + oldCS;
-                                                                    if (tempCS > 10)
-                                                                    {
-                                                                        tempCS = 10;
-                                                                    }
-                                                                    if (tempCS < 0)
-                                                                    {
-                                                                        tempCS = 0;
-                                                                    }
-                                                                    beatmapContents = beatmapContents.Replace("CircleSize:", "CircleSize:" + Convert.ToString(tempCS) + Environment.NewLine + "//OldCS:");
-                                                                }
-                                                            }
-                                                            else
-                                                            {
-                                                                beatmapContents = beatmapContents.Replace("CircleSize:", "CircleSize:" + Convert.ToString(newCS) + Environment.NewLine + "//OldCS:");
-                                                            }
-                                                        }
-                                                        if (relAR == true)
-                                                        {
-                                                            if (newAR != 0)
-                                                            {
-                                                                double tempAR = newAR + oldAR;
-                                                                if (tempAR > 10)
-                                                                {
-                                                                    tempAR = 10;
-                                                                }
-                                                                if (tempAR < 0)
-                                                                {
-                                                                    tempAR = 0;
-                                                                }
-                                                                beatmapContents = beatmapContents.Replace("ApproachRate:", "ApproachRate:" + Convert.ToString(tempAR) + Environment.NewLine + "//OldAR:");
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            beatmapContents = beatmapContents.Replace("ApproachRate:", "ApproachRate:" + Convert.ToString(newAR) + Environment.NewLine + "//OldAR:");
-                                                        }
-
-                                                        if (relOD == true)
-                                                        {
-                                                            if (newOD != 0)
-                                                            {
-                                                                double tempOD = newOD + oldOD;
-                                                                if (tempOD > 10)
-                                                                {
-                                                                    tempOD = 10;
-                                                                }
-                                                                if (tempOD < 0)
-                                                                {
-                                                                    tempOD = 0;
-                                                                }
-                                                                beatmapContents = beatmapContents.Replace("OverallDifficulty:", "OverallDifficulty:" + Convert.ToString(tempOD) + Environment.NewLine + "//OldOD:");
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            beatmapContents = beatmapContents.Replace("OverallDifficulty:", "OverallDifficulty:" + Convert.ToString(newOD) + Environment.NewLine + "//OldOD:");
-                                                        }
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    if (oldMaps == true)
-                                                    {
-                                                        //treat OD as AR
-                                                        if (fromAR < oldOD & oldOD < toAR)
-                                                        {
-                                                            //make relative adjustments based on AR
-                                                            if (relAR == true)
-                                                            {
-                                                                if (newAR != 0)
-                                                                {
-                                                                    double tempOD = newAR + oldOD;
-                                                                    if (tempOD > 10)
-                                                                    {
-                                                                        tempOD = 10;
-                                                                    }
-                                                                    if (tempOD < 0)
-                                                                    {
-                                                                        tempOD = 0;
-                                                                    }
-                                                                    beatmapContents = beatmapContents.Replace("OverallDifficulty:", "OverallDifficulty:" + Convert.ToString(tempOD) + Environment.NewLine + "//OldOD:");
-                                                                }
-                                                            }
-                                                            else
-                                                            {
-                                                                beatmapContents = beatmapContents.Replace("OverallDifficulty:", "OverallDifficulty:" + Convert.ToString(newAR) + Environment.NewLine + "//OldOD:");
-                                                                //use AR value as new OD
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                beatmapContents = beatmapContents.Replace("osu file format ", "osu file format v14" + Environment.NewLine + "//Old:");
-                                                beatmapContents = beatmapContents.Replace("Version:", "Version:[" + name + "] ");
-                                                beatmapContents = beatmapContents.Replace("BeatmapID:", "BeatmapID:-");
-                                                string newFileName = currentFile.Replace("].osu", "__" + name + "__].osu");
-                                                try
-                                                {
-                                                    File.WriteAllText(newFileName, beatmapContents);
-                                                    Console.WriteLine(newFileName);
-                                                    createdFiles += 1;
-                                                }
-                                                catch
-                                                {
-                                                    MessageBox.Show("This map's file path is too long. Move or rename it and try again." + Environment.NewLine + newFileName, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                    Console.WriteLine("This map's file path is too long. Move or rename it and try again." + Environment.NewLine);
-                                                    Console.WriteLine(newFileName + Environment.NewLine);
-                                                    failedFiles += 1;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        Console.WriteLine("Done! " + createdFiles + " " + name + " copies were created. " + failedFiles + " failed.");
-                        SystemSounds.Asterisk.Play();
-                        MessageBox.Show("Done! " + createdFiles + " " + name + " copies were created. " + failedFiles + " failed.", "Finished", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        Console.Title = "osu! Map Settings Customizer 2.0";
-                        #endregion
-                        break;
-                    case "update":
-                        #region
-                        foreach (string currentFolder in songFolders)
-                        {
-                            foreach (string currentFile in Directory.GetFiles(currentFolder))
-                            {
-                                if (currentFile.EndsWith(".osu") & !currentFile.EndsWith("__].osu"))
-                                {
-                                    if (!File.Exists(currentFile.Replace("].osu", "__" + name + "__].osu")))
-                                    {
                                         filesPercent = Math.Round((completedFiles / totalFiles * 100.00), 2);
                                         Console.Title = "Creating new beatmaps - " + completedFiles + "/" + totalFiles + " - " + filesPercent + "% complete.";
                                         Application.DoEvents();
@@ -404,7 +187,8 @@ namespace MapSettingsCustomizer
                                         double oldCS = 0;
                                         double oldAR = 0;
                                         double oldOD = 0;
-                                        bool customMap = false;
+                                        //Need this for the Update feature eventually
+                                        //bool customMap = false;
                                         try
                                         {
                                             mapVersion = Convert.ToInt32(Convert.ToString(Regex.Match(beatmapContents, "(?<=osu file format v)(\\d+)")));
@@ -415,7 +199,7 @@ namespace MapSettingsCustomizer
                                         try
                                         {
                                             oldHP = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=//OldHP:)([ \\d.]+)")));
-                                            customMap = true;
+                                            //customMap = true;
                                         }
                                         catch
                                         {
@@ -424,7 +208,7 @@ namespace MapSettingsCustomizer
                                         try
                                         {
                                             oldCS = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=//OldCS:)([ \\d.]+)")));
-                                            customMap = true;
+                                            //customMap = true;
                                         }
                                         catch
                                         {
@@ -433,7 +217,7 @@ namespace MapSettingsCustomizer
                                         try
                                         {
                                             oldAR = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=//OldAR:)([ \\d.]+)")));
-                                            customMap = true;
+                                            //customMap = true;
                                         }
                                         catch
                                         {
@@ -442,7 +226,7 @@ namespace MapSettingsCustomizer
                                         try
                                         {
                                             oldOD = Convert.ToDouble(Convert.ToString(Regex.Match(beatmapContents, "(?<=//OldOD:)([ \\d.]+)")));
-                                            customMap = true;
+                                            //customMap = true;
                                         }
                                         catch
                                         {
@@ -462,7 +246,9 @@ namespace MapSettingsCustomizer
                                                             {
                                                                 if (newHP != 0)
                                                                 {
+                                                                    //Make relative changes
                                                                     double tempHP = newHP + oldHP;
+                                                                    //Clamp to 0-10
                                                                     if (tempHP > 10)
                                                                     {
                                                                         tempHP = 10;
@@ -471,6 +257,7 @@ namespace MapSettingsCustomizer
                                                                     {
                                                                         tempHP = 0;
                                                                     }
+                                                                    //Save Old value for future relative changes
                                                                     beatmapContents = beatmapContents.Replace("HPDrainRate:", "HPDrainRate:" + Convert.ToString(tempHP) + Environment.NewLine + "//OldHP:");
                                                                 }
                                                             }
@@ -478,7 +265,6 @@ namespace MapSettingsCustomizer
                                                             {
                                                                 beatmapContents = beatmapContents.Replace("HPDrainRate:", "HPDrainRate:" + Convert.ToString(newHP) + Environment.NewLine + "//OldHP:");
                                                             }
-
                                                             if (relCS == true)
                                                             {
                                                                 if (newCS != 0)
@@ -486,7 +272,7 @@ namespace MapSettingsCustomizer
                                                                     double tempCS = newCS + oldCS;
                                                                     if (tempCS > 10)
                                                                     {
-                                                                        tempCS = 10;
+                                                                        tempCS = 10; //CS can still be 10, even if the editor doesn't like it.
                                                                     }
                                                                     if (tempCS < 0)
                                                                     {
@@ -520,7 +306,6 @@ namespace MapSettingsCustomizer
                                                         {
                                                             beatmapContents = beatmapContents.Replace("ApproachRate:", "ApproachRate:" + Convert.ToString(newAR) + Environment.NewLine + "//OldAR:");
                                                         }
-
                                                         if (relOD == true)
                                                         {
                                                             if (newOD != 0)
@@ -547,14 +332,14 @@ namespace MapSettingsCustomizer
                                                 {
                                                     if (oldMaps == true)
                                                     {
-                                                        //treat OD as AR
+                                                        //OD controls AR on old maps. For now, prioritize AR
                                                         if (fromAR < oldOD & oldOD < toAR)
                                                         {
-                                                            //make relative adjustments based on AR
                                                             if (relAR == true)
                                                             {
                                                                 if (newAR != 0)
                                                                 {
+                                                                    //Make relative adjustments on OD, but using +/- AR
                                                                     double tempOD = newAR + oldOD;
                                                                     if (tempOD > 10)
                                                                     {
@@ -569,13 +354,14 @@ namespace MapSettingsCustomizer
                                                             }
                                                             else
                                                             {
+                                                                //Use chosen AR value as new OD
                                                                 beatmapContents = beatmapContents.Replace("OverallDifficulty:", "OverallDifficulty:" + Convert.ToString(newAR) + Environment.NewLine + "//OldOD:");
-                                                                //use AR value as new OD
                                                             }
                                                         }
                                                     }
                                                 }
-                                                beatmapContents = beatmapContents.Replace("osu file format ", "osu file format v14" + Environment.NewLine + "//Old:");
+                                                //Might need this later if I decide to try adding AR to old maps
+                                                //beatmapContents = beatmapContents.Replace("osu file format ", "osu file format v14" + Environment.NewLine + "//Old:");
                                                 beatmapContents = beatmapContents.Replace("Version:", "Version:[" + name + "] ");
                                                 beatmapContents = beatmapContents.Replace("BeatmapID:", "BeatmapID:-");
                                                 string newFileName = currentFile.Replace("].osu", "__" + name + "__].osu");
@@ -598,13 +384,22 @@ namespace MapSettingsCustomizer
                                 }
                             }
                         }
-
                         Console.WriteLine("Done! " + createdFiles + " " + name + " copies were created. " + failedFiles + " failed.");
                         SystemSounds.Asterisk.Play();
                         MessageBox.Show("Done! " + createdFiles + " " + name + " copies were created. " + failedFiles + " failed.", "Finished", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         Console.Title = "osu! Map Settings Customizer 2.0";
                         #endregion
                         break;
+                    case "update":
+                        try
+                        {
+                            Console.WriteLine(Convert.ToDateTime("9001/0"));
+                        }
+                        catch
+                        {
+                            MessageBox.Show("I bet you thought you were clever running -update from the command line", "This feature is not yet implemented", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                            break;
                     case "delete":
                         #region
                         foreach (string currentFolder in songFolders)
@@ -631,7 +426,6 @@ namespace MapSettingsCustomizer
                                 }
                             }
                         }
-
                         Console.WriteLine("Done! " + completedFiles + " " + name + " copies were deleted. " + failedFiles + " failed.");
                         SystemSounds.Asterisk.Play();
                         MessageBox.Show("Done! " + completedFiles + " " + name + " copies were deleted.", "Finished", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

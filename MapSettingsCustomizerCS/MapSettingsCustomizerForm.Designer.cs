@@ -726,6 +726,7 @@
             // 
             this.BatchfileSaveDialog.DefaultExt = "bat";
             this.BatchfileSaveDialog.Filter = "Batch file (.bat)|*.bat";
+            this.BatchfileSaveDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.BatchfileSaveDialog_FileOk);
             // 
             // BatchfileSaveButton
             // 
