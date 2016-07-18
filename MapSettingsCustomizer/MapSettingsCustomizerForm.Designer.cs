@@ -42,15 +42,15 @@
             this.ToOldHPLabel = new System.Windows.Forms.Label();
             this.ToOldODBar = new System.Windows.Forms.TrackBar();
             this.ToOldCSBar = new System.Windows.Forms.TrackBar();
-            this.ToOldARBar = new System.Windows.Forms.TrackBar();
             this.ToOldHPBar = new System.Windows.Forms.TrackBar();
             this.FromOldODLabel = new System.Windows.Forms.Label();
+            this.ToOldARBar = new System.Windows.Forms.TrackBar();
             this.FromOldCSLabel = new System.Windows.Forms.Label();
-            this.FromOldARLabel = new System.Windows.Forms.Label();
+            this.FromOldARBar = new System.Windows.Forms.TrackBar();
             this.FromOldHPLabel = new System.Windows.Forms.Label();
+            this.FromOldARLabel = new System.Windows.Forms.Label();
             this.FromOldODBar = new System.Windows.Forms.TrackBar();
             this.FromOldCSBar = new System.Windows.Forms.TrackBar();
-            this.FromOldARBar = new System.Windows.Forms.TrackBar();
             this.FromOldHPBar = new System.Windows.Forms.TrackBar();
             this.NewODBox = new System.Windows.Forms.TextBox();
             this.NewARBox = new System.Windows.Forms.TextBox();
@@ -78,11 +78,10 @@
             this.NameInputBox = new System.Windows.Forms.TextBox();
             this.ProcessMapsButton = new System.Windows.Forms.Button();
             this.NewMapsGroup = new System.Windows.Forms.GroupBox();
-            this.IncludeOldMaps = new System.Windows.Forms.CheckBox();
             this.NewODRelative = new System.Windows.Forms.CheckBox();
-            this.NewARRelative = new System.Windows.Forms.CheckBox();
             this.NewCSRelative = new System.Windows.Forms.CheckBox();
             this.NewHPRelative = new System.Windows.Forms.CheckBox();
+            this.NewARRelative = new System.Windows.Forms.CheckBox();
             this.HoverToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.BatchfileSaveDialog = new System.Windows.Forms.SaveFileDialog();
             this.osuDirectoryBrowseDialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -92,11 +91,11 @@
             this.OldMapsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ToOldODBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToOldCSBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ToOldARBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToOldHPBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToOldARBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FromOldARBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromOldODBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromOldCSBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FromOldARBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromOldHPBar)).BeginInit();
             this.DirectoryGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NewHPBar)).BeginInit();
@@ -115,12 +114,13 @@
             this.DirectoryInputBox.Name = "DirectoryInputBox";
             this.DirectoryInputBox.Size = new System.Drawing.Size(280, 20);
             this.DirectoryInputBox.TabIndex = 0;
+            this.DirectoryInputBox.Text = "G:\\osu!\\Songs";
             // 
             // OldODLabel
             // 
             this.OldODLabel.AutoSize = true;
             this.OldODLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OldODLabel.Location = new System.Drawing.Point(9, 163);
+            this.OldODLabel.Location = new System.Drawing.Point(6, 118);
             this.OldODLabel.Name = "OldODLabel";
             this.OldODLabel.Size = new System.Drawing.Size(83, 13);
             this.OldODLabel.TabIndex = 0;
@@ -130,7 +130,7 @@
             // 
             this.OldCSLabel.AutoSize = true;
             this.OldCSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OldCSLabel.Location = new System.Drawing.Point(9, 67);
+            this.OldCSLabel.Location = new System.Drawing.Point(6, 67);
             this.OldCSLabel.Name = "OldCSLabel";
             this.OldCSLabel.Size = new System.Drawing.Size(56, 13);
             this.OldCSLabel.TabIndex = 0;
@@ -140,7 +140,7 @@
             // 
             this.OldARLabel.AutoSize = true;
             this.OldARLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OldARLabel.Location = new System.Drawing.Point(9, 116);
+            this.OldARLabel.Location = new System.Drawing.Point(6, 169);
             this.OldARLabel.Name = "OldARLabel";
             this.OldARLabel.Size = new System.Drawing.Size(79, 13);
             this.OldARLabel.TabIndex = 0;
@@ -150,7 +150,7 @@
             // 
             this.OldHPLabel.AutoSize = true;
             this.OldHPLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OldHPLabel.Location = new System.Drawing.Point(9, 20);
+            this.OldHPLabel.Location = new System.Drawing.Point(6, 16);
             this.OldHPLabel.Name = "OldHPLabel";
             this.OldHPLabel.Size = new System.Drawing.Size(76, 13);
             this.OldHPLabel.TabIndex = 0;
@@ -168,20 +168,20 @@
             this.OldMapsGroup.Controls.Add(this.ToOldHPLabel);
             this.OldMapsGroup.Controls.Add(this.ToOldODBar);
             this.OldMapsGroup.Controls.Add(this.ToOldCSBar);
-            this.OldMapsGroup.Controls.Add(this.ToOldARBar);
             this.OldMapsGroup.Controls.Add(this.ToOldHPBar);
             this.OldMapsGroup.Controls.Add(this.FromOldODLabel);
+            this.OldMapsGroup.Controls.Add(this.ToOldARBar);
             this.OldMapsGroup.Controls.Add(this.FromOldCSLabel);
-            this.OldMapsGroup.Controls.Add(this.FromOldARLabel);
+            this.OldMapsGroup.Controls.Add(this.FromOldARBar);
             this.OldMapsGroup.Controls.Add(this.FromOldHPLabel);
+            this.OldMapsGroup.Controls.Add(this.FromOldARLabel);
             this.OldMapsGroup.Controls.Add(this.FromOldODBar);
             this.OldMapsGroup.Controls.Add(this.FromOldCSBar);
-            this.OldMapsGroup.Controls.Add(this.FromOldARBar);
             this.OldMapsGroup.Controls.Add(this.FromOldHPBar);
             this.OldMapsGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OldMapsGroup.Location = new System.Drawing.Point(12, 65);
             this.OldMapsGroup.Name = "OldMapsGroup";
-            this.OldMapsGroup.Size = new System.Drawing.Size(456, 232);
+            this.OldMapsGroup.Size = new System.Drawing.Size(456, 236);
             this.OldMapsGroup.TabIndex = 10;
             this.OldMapsGroup.TabStop = false;
             this.OldMapsGroup.Text = "Include maps matching these settings:";
@@ -190,7 +190,7 @@
             // 
             this.ToOldODLabel.AutoSize = true;
             this.ToOldODLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToOldODLabel.Location = new System.Drawing.Point(281, 163);
+            this.ToOldODLabel.Location = new System.Drawing.Point(278, 118);
             this.ToOldODLabel.Name = "ToOldODLabel";
             this.ToOldODLabel.Size = new System.Drawing.Size(38, 13);
             this.ToOldODLabel.TabIndex = 0;
@@ -200,7 +200,7 @@
             // 
             this.ToOldCSLabel.AutoSize = true;
             this.ToOldCSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToOldCSLabel.Location = new System.Drawing.Point(281, 67);
+            this.ToOldCSLabel.Location = new System.Drawing.Point(278, 67);
             this.ToOldCSLabel.Name = "ToOldCSLabel";
             this.ToOldCSLabel.Size = new System.Drawing.Size(38, 13);
             this.ToOldCSLabel.TabIndex = 0;
@@ -210,7 +210,7 @@
             // 
             this.ToOldARLabel.AutoSize = true;
             this.ToOldARLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToOldARLabel.Location = new System.Drawing.Point(281, 116);
+            this.ToOldARLabel.Location = new System.Drawing.Point(278, 169);
             this.ToOldARLabel.Name = "ToOldARLabel";
             this.ToOldARLabel.Size = new System.Drawing.Size(38, 13);
             this.ToOldARLabel.TabIndex = 0;
@@ -220,7 +220,7 @@
             // 
             this.ToOldHPLabel.AutoSize = true;
             this.ToOldHPLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToOldHPLabel.Location = new System.Drawing.Point(281, 20);
+            this.ToOldHPLabel.Location = new System.Drawing.Point(278, 16);
             this.ToOldHPLabel.Name = "ToOldHPLabel";
             this.ToOldHPLabel.Size = new System.Drawing.Size(38, 13);
             this.ToOldHPLabel.TabIndex = 0;
@@ -228,7 +228,7 @@
             // 
             // ToOldODBar
             // 
-            this.ToOldODBar.Location = new System.Drawing.Point(284, 179);
+            this.ToOldODBar.Location = new System.Drawing.Point(281, 134);
             this.ToOldODBar.Maximum = 100;
             this.ToOldODBar.Name = "ToOldODBar";
             this.ToOldODBar.Size = new System.Drawing.Size(166, 45);
@@ -239,7 +239,7 @@
             // 
             // ToOldCSBar
             // 
-            this.ToOldCSBar.Location = new System.Drawing.Point(284, 83);
+            this.ToOldCSBar.Location = new System.Drawing.Point(281, 83);
             this.ToOldCSBar.Maximum = 100;
             this.ToOldCSBar.Name = "ToOldCSBar";
             this.ToOldCSBar.Size = new System.Drawing.Size(166, 45);
@@ -248,20 +248,9 @@
             this.ToOldCSBar.Value = 100;
             this.ToOldCSBar.Scroll += new System.EventHandler(this.ToOldCSBar_Scroll);
             // 
-            // ToOldARBar
-            // 
-            this.ToOldARBar.Location = new System.Drawing.Point(284, 132);
-            this.ToOldARBar.Maximum = 100;
-            this.ToOldARBar.Name = "ToOldARBar";
-            this.ToOldARBar.Size = new System.Drawing.Size(166, 45);
-            this.ToOldARBar.TabIndex = 5;
-            this.ToOldARBar.TickFrequency = 10;
-            this.ToOldARBar.Value = 100;
-            this.ToOldARBar.Scroll += new System.EventHandler(this.ToOldARBar_Scroll);
-            // 
             // ToOldHPBar
             // 
-            this.ToOldHPBar.Location = new System.Drawing.Point(284, 36);
+            this.ToOldHPBar.Location = new System.Drawing.Point(281, 32);
             this.ToOldHPBar.Maximum = 100;
             this.ToOldHPBar.Name = "ToOldHPBar";
             this.ToOldHPBar.Size = new System.Drawing.Size(166, 45);
@@ -274,45 +263,66 @@
             // 
             this.FromOldODLabel.AutoSize = true;
             this.FromOldODLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FromOldODLabel.Location = new System.Drawing.Point(106, 163);
+            this.FromOldODLabel.Location = new System.Drawing.Point(103, 118);
             this.FromOldODLabel.Name = "FromOldODLabel";
             this.FromOldODLabel.Size = new System.Drawing.Size(42, 13);
             this.FromOldODLabel.TabIndex = 0;
             this.FromOldODLabel.Text = "From: 0";
             // 
+            // ToOldARBar
+            // 
+            this.ToOldARBar.Location = new System.Drawing.Point(281, 185);
+            this.ToOldARBar.Maximum = 100;
+            this.ToOldARBar.Name = "ToOldARBar";
+            this.ToOldARBar.Size = new System.Drawing.Size(166, 45);
+            this.ToOldARBar.TabIndex = 5;
+            this.ToOldARBar.TickFrequency = 10;
+            this.ToOldARBar.Value = 100;
+            this.ToOldARBar.Scroll += new System.EventHandler(this.ToOldARBar_Scroll);
+            // 
             // FromOldCSLabel
             // 
             this.FromOldCSLabel.AutoSize = true;
             this.FromOldCSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FromOldCSLabel.Location = new System.Drawing.Point(106, 67);
+            this.FromOldCSLabel.Location = new System.Drawing.Point(103, 67);
             this.FromOldCSLabel.Name = "FromOldCSLabel";
             this.FromOldCSLabel.Size = new System.Drawing.Size(42, 13);
             this.FromOldCSLabel.TabIndex = 0;
             this.FromOldCSLabel.Text = "From: 0";
             // 
-            // FromOldARLabel
+            // FromOldARBar
             // 
-            this.FromOldARLabel.AutoSize = true;
-            this.FromOldARLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FromOldARLabel.Location = new System.Drawing.Point(106, 116);
-            this.FromOldARLabel.Name = "FromOldARLabel";
-            this.FromOldARLabel.Size = new System.Drawing.Size(42, 13);
-            this.FromOldARLabel.TabIndex = 0;
-            this.FromOldARLabel.Text = "From: 0";
+            this.FromOldARBar.Location = new System.Drawing.Point(106, 185);
+            this.FromOldARBar.Maximum = 100;
+            this.FromOldARBar.Name = "FromOldARBar";
+            this.FromOldARBar.Size = new System.Drawing.Size(166, 45);
+            this.FromOldARBar.TabIndex = 4;
+            this.FromOldARBar.TickFrequency = 10;
+            this.FromOldARBar.Scroll += new System.EventHandler(this.FromOldARBar_Scroll);
             // 
             // FromOldHPLabel
             // 
             this.FromOldHPLabel.AutoSize = true;
             this.FromOldHPLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FromOldHPLabel.Location = new System.Drawing.Point(106, 20);
+            this.FromOldHPLabel.Location = new System.Drawing.Point(103, 16);
             this.FromOldHPLabel.Name = "FromOldHPLabel";
             this.FromOldHPLabel.Size = new System.Drawing.Size(42, 13);
             this.FromOldHPLabel.TabIndex = 0;
             this.FromOldHPLabel.Text = "From: 0";
             // 
+            // FromOldARLabel
+            // 
+            this.FromOldARLabel.AutoSize = true;
+            this.FromOldARLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FromOldARLabel.Location = new System.Drawing.Point(103, 169);
+            this.FromOldARLabel.Name = "FromOldARLabel";
+            this.FromOldARLabel.Size = new System.Drawing.Size(42, 13);
+            this.FromOldARLabel.TabIndex = 0;
+            this.FromOldARLabel.Text = "From: 0";
+            // 
             // FromOldODBar
             // 
-            this.FromOldODBar.Location = new System.Drawing.Point(109, 178);
+            this.FromOldODBar.Location = new System.Drawing.Point(106, 134);
             this.FromOldODBar.Maximum = 100;
             this.FromOldODBar.Name = "FromOldODBar";
             this.FromOldODBar.Size = new System.Drawing.Size(166, 45);
@@ -322,7 +332,7 @@
             // 
             // FromOldCSBar
             // 
-            this.FromOldCSBar.Location = new System.Drawing.Point(109, 82);
+            this.FromOldCSBar.Location = new System.Drawing.Point(106, 83);
             this.FromOldCSBar.Maximum = 70;
             this.FromOldCSBar.Name = "FromOldCSBar";
             this.FromOldCSBar.Size = new System.Drawing.Size(166, 45);
@@ -330,19 +340,9 @@
             this.FromOldCSBar.TickFrequency = 10;
             this.FromOldCSBar.Scroll += new System.EventHandler(this.FromOldCSBar_Scroll);
             // 
-            // FromOldARBar
-            // 
-            this.FromOldARBar.Location = new System.Drawing.Point(109, 131);
-            this.FromOldARBar.Maximum = 100;
-            this.FromOldARBar.Name = "FromOldARBar";
-            this.FromOldARBar.Size = new System.Drawing.Size(166, 45);
-            this.FromOldARBar.TabIndex = 4;
-            this.FromOldARBar.TickFrequency = 10;
-            this.FromOldARBar.Scroll += new System.EventHandler(this.FromOldARBar_Scroll);
-            // 
             // FromOldHPBar
             // 
-            this.FromOldHPBar.Location = new System.Drawing.Point(109, 35);
+            this.FromOldHPBar.Location = new System.Drawing.Point(106, 32);
             this.FromOldHPBar.Maximum = 100;
             this.FromOldHPBar.Name = "FromOldHPBar";
             this.FromOldHPBar.Size = new System.Drawing.Size(166, 45);
@@ -353,7 +353,7 @@
             // NewODBox
             // 
             this.NewODBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.NewODBox.Location = new System.Drawing.Point(297, 181);
+            this.NewODBox.Location = new System.Drawing.Point(297, 138);
             this.NewODBox.Name = "NewODBox";
             this.NewODBox.Size = new System.Drawing.Size(140, 20);
             this.NewODBox.TabIndex = 11;
@@ -363,17 +363,17 @@
             // NewARBox
             // 
             this.NewARBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.NewARBox.Location = new System.Drawing.Point(297, 134);
+            this.NewARBox.Location = new System.Drawing.Point(297, 189);
             this.NewARBox.Name = "NewARBox";
             this.NewARBox.Size = new System.Drawing.Size(140, 20);
             this.NewARBox.TabIndex = 8;
-            this.NewARBox.Text = "9";
+            this.NewARBox.Text = "-1";
             this.NewARBox.TextChanged += new System.EventHandler(this.NewARBox_TextChanged);
             // 
             // NewCSBox
             // 
             this.NewCSBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.NewCSBox.Location = new System.Drawing.Point(297, 85);
+            this.NewCSBox.Location = new System.Drawing.Point(297, 87);
             this.NewCSBox.Name = "NewCSBox";
             this.NewCSBox.Size = new System.Drawing.Size(140, 20);
             this.NewCSBox.TabIndex = 5;
@@ -383,7 +383,7 @@
             // NewHPBox
             // 
             this.NewHPBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.NewHPBox.Location = new System.Drawing.Point(297, 40);
+            this.NewHPBox.Location = new System.Drawing.Point(297, 36);
             this.NewHPBox.Name = "NewHPBox";
             this.NewHPBox.Size = new System.Drawing.Size(140, 20);
             this.NewHPBox.TabIndex = 2;
@@ -394,7 +394,7 @@
             // 
             this.NewODLabel.AutoSize = true;
             this.NewODLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewODLabel.Location = new System.Drawing.Point(6, 162);
+            this.NewODLabel.Location = new System.Drawing.Point(6, 118);
             this.NewODLabel.Name = "NewODLabel";
             this.NewODLabel.Size = new System.Drawing.Size(83, 13);
             this.NewODLabel.TabIndex = 0;
@@ -439,7 +439,7 @@
             // 
             // NewHPBar
             // 
-            this.NewHPBar.Location = new System.Drawing.Point(109, 19);
+            this.NewHPBar.Location = new System.Drawing.Point(106, 16);
             this.NewHPBar.Maximum = 100;
             this.NewHPBar.Name = "NewHPBar";
             this.NewHPBar.Size = new System.Drawing.Size(166, 45);
@@ -452,7 +452,7 @@
             // 
             this.NewHPLabel.AutoSize = true;
             this.NewHPLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewHPLabel.Location = new System.Drawing.Point(6, 19);
+            this.NewHPLabel.Location = new System.Drawing.Point(6, 16);
             this.NewHPLabel.Name = "NewHPLabel";
             this.NewHPLabel.Size = new System.Drawing.Size(76, 13);
             this.NewHPLabel.TabIndex = 0;
@@ -460,7 +460,8 @@
             // 
             // NewARBar
             // 
-            this.NewARBar.Location = new System.Drawing.Point(109, 115);
+            this.NewARBar.Enabled = false;
+            this.NewARBar.Location = new System.Drawing.Point(106, 169);
             this.NewARBar.Maximum = 100;
             this.NewARBar.Name = "NewARBar";
             this.NewARBar.Size = new System.Drawing.Size(166, 45);
@@ -471,7 +472,7 @@
             // 
             // NewCSBar
             // 
-            this.NewCSBar.Location = new System.Drawing.Point(109, 66);
+            this.NewCSBar.Location = new System.Drawing.Point(106, 67);
             this.NewCSBar.Maximum = 100;
             this.NewCSBar.Name = "NewCSBar";
             this.NewCSBar.Size = new System.Drawing.Size(166, 45);
@@ -484,7 +485,7 @@
             // 
             this.NewARLabel.AutoSize = true;
             this.NewARLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewARLabel.Location = new System.Drawing.Point(6, 115);
+            this.NewARLabel.Location = new System.Drawing.Point(6, 169);
             this.NewARLabel.Name = "NewARLabel";
             this.NewARLabel.Size = new System.Drawing.Size(79, 13);
             this.NewARLabel.TabIndex = 0;
@@ -494,7 +495,7 @@
             // 
             this.DubuInfoLabel.AutoSize = true;
             this.DubuInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DubuInfoLabel.Location = new System.Drawing.Point(9, 689);
+            this.DubuInfoLabel.Location = new System.Drawing.Point(9, 699);
             this.DubuInfoLabel.Name = "DubuInfoLabel";
             this.DubuInfoLabel.Size = new System.Drawing.Size(78, 13);
             this.DubuInfoLabel.TabIndex = 8;
@@ -503,7 +504,7 @@
             // JTFLink
             // 
             this.JTFLink.AutoSize = true;
-            this.JTFLink.Location = new System.Drawing.Point(197, 674);
+            this.JTFLink.Location = new System.Drawing.Point(197, 684);
             this.JTFLink.Name = "JTFLink";
             this.JTFLink.Size = new System.Drawing.Size(43, 13);
             this.JTFLink.TabIndex = 14;
@@ -515,7 +516,7 @@
             // 
             this.NewCSLabel.AutoSize = true;
             this.NewCSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewCSLabel.Location = new System.Drawing.Point(6, 66);
+            this.NewCSLabel.Location = new System.Drawing.Point(6, 67);
             this.NewCSLabel.Name = "NewCSLabel";
             this.NewCSLabel.Size = new System.Drawing.Size(56, 13);
             this.NewCSLabel.TabIndex = 0;
@@ -523,7 +524,7 @@
             // 
             // NewODBar
             // 
-            this.NewODBar.Location = new System.Drawing.Point(109, 162);
+            this.NewODBar.Location = new System.Drawing.Point(106, 118);
             this.NewODBar.Maximum = 100;
             this.NewODBar.Name = "NewODBar";
             this.NewODBar.Size = new System.Drawing.Size(166, 45);
@@ -535,7 +536,7 @@
             // DubuLink
             // 
             this.DubuLink.AutoSize = true;
-            this.DubuLink.Location = new System.Drawing.Point(88, 690);
+            this.DubuLink.Location = new System.Drawing.Point(88, 700);
             this.DubuLink.Name = "DubuLink";
             this.DubuLink.Size = new System.Drawing.Size(33, 13);
             this.DubuLink.TabIndex = 15;
@@ -547,7 +548,7 @@
             // 
             this.JTFInfoLabel.AutoSize = true;
             this.JTFInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JTFInfoLabel.Location = new System.Drawing.Point(9, 673);
+            this.JTFInfoLabel.Location = new System.Drawing.Point(9, 683);
             this.JTFInfoLabel.Name = "JTFInfoLabel";
             this.JTFInfoLabel.Size = new System.Drawing.Size(187, 13);
             this.JTFInfoLabel.TabIndex = 9;
@@ -561,7 +562,7 @@
             this.ProcessMapsGroup.Controls.Add(this.NameInputBox);
             this.ProcessMapsGroup.Controls.Add(this.ProcessMapsButton);
             this.ProcessMapsGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProcessMapsGroup.Location = new System.Drawing.Point(12, 523);
+            this.ProcessMapsGroup.Location = new System.Drawing.Point(12, 533);
             this.ProcessMapsGroup.Name = "ProcessMapsGroup";
             this.ProcessMapsGroup.Size = new System.Drawing.Size(456, 76);
             this.ProcessMapsGroup.TabIndex = 12;
@@ -615,7 +616,7 @@
             this.NameInputBox.Name = "NameInputBox";
             this.NameInputBox.Size = new System.Drawing.Size(280, 20);
             this.NameInputBox.TabIndex = 0;
-            this.NameInputBox.TextChanged += new System.EventHandler(this.NameInputBox_TextChanged);
+            this.NameInputBox.Text = "OD10AR-1";
             // 
             // ProcessMapsButton
             // 
@@ -631,50 +632,35 @@
             // 
             // NewMapsGroup
             // 
-            this.NewMapsGroup.Controls.Add(this.IncludeOldMaps);
             this.NewMapsGroup.Controls.Add(this.NewODBox);
             this.NewMapsGroup.Controls.Add(this.NewARBox);
             this.NewMapsGroup.Controls.Add(this.NewCSBox);
             this.NewMapsGroup.Controls.Add(this.NewHPBox);
             this.NewMapsGroup.Controls.Add(this.NewODRelative);
-            this.NewMapsGroup.Controls.Add(this.NewARRelative);
             this.NewMapsGroup.Controls.Add(this.NewCSRelative);
             this.NewMapsGroup.Controls.Add(this.NewHPRelative);
+            this.NewMapsGroup.Controls.Add(this.NewARRelative);
             this.NewMapsGroup.Controls.Add(this.NewODLabel);
             this.NewMapsGroup.Controls.Add(this.NewHPBar);
             this.NewMapsGroup.Controls.Add(this.NewHPLabel);
-            this.NewMapsGroup.Controls.Add(this.NewARBar);
             this.NewMapsGroup.Controls.Add(this.NewCSBar);
-            this.NewMapsGroup.Controls.Add(this.NewARLabel);
             this.NewMapsGroup.Controls.Add(this.NewCSLabel);
+            this.NewMapsGroup.Controls.Add(this.NewARLabel);
+            this.NewMapsGroup.Controls.Add(this.NewARBar);
             this.NewMapsGroup.Controls.Add(this.NewODBar);
             this.NewMapsGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewMapsGroup.Location = new System.Drawing.Point(12, 303);
+            this.NewMapsGroup.Location = new System.Drawing.Point(12, 307);
             this.NewMapsGroup.Name = "NewMapsGroup";
-            this.NewMapsGroup.Size = new System.Drawing.Size(456, 214);
+            this.NewMapsGroup.Size = new System.Drawing.Size(456, 220);
             this.NewMapsGroup.TabIndex = 11;
             this.NewMapsGroup.TabStop = false;
             this.NewMapsGroup.Text = "Create/Update maps using these settings:";
-            // 
-            // IncludeOldMaps
-            // 
-            this.IncludeOldMaps.AutoSize = true;
-            this.IncludeOldMaps.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IncludeOldMaps.Location = new System.Drawing.Point(6, 191);
-            this.IncludeOldMaps.Name = "IncludeOldMaps";
-            this.IncludeOldMaps.Size = new System.Drawing.Size(106, 17);
-            this.IncludeOldMaps.TabIndex = 12;
-            this.IncludeOldMaps.Text = "Include old maps";
-            this.HoverToolTip.SetToolTip(this.IncludeOldMaps, "Beatmaps older than v8 use a single setting for both AR and OD.\r\nIt will be updat" +
-        "ed using the value chosen for AR.");
-            this.IncludeOldMaps.UseVisualStyleBackColor = true;
-            this.IncludeOldMaps.CheckedChanged += new System.EventHandler(this.IncludeOldMaps_CheckedChanged);
             // 
             // NewODRelative
             // 
             this.NewODRelative.AutoSize = true;
             this.NewODRelative.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewODRelative.Location = new System.Drawing.Point(297, 162);
+            this.NewODRelative.Location = new System.Drawing.Point(297, 118);
             this.NewODRelative.Name = "NewODRelative";
             this.NewODRelative.Size = new System.Drawing.Size(65, 17);
             this.NewODRelative.TabIndex = 10;
@@ -683,24 +669,11 @@
             this.NewODRelative.UseVisualStyleBackColor = true;
             this.NewODRelative.CheckedChanged += new System.EventHandler(this.NewODRelative_CheckedChanged);
             // 
-            // NewARRelative
-            // 
-            this.NewARRelative.AutoSize = true;
-            this.NewARRelative.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewARRelative.Location = new System.Drawing.Point(297, 115);
-            this.NewARRelative.Name = "NewARRelative";
-            this.NewARRelative.Size = new System.Drawing.Size(65, 17);
-            this.NewARRelative.TabIndex = 7;
-            this.NewARRelative.Text = "Relative";
-            this.HoverToolTip.SetToolTip(this.NewARRelative, "Modify maps using +/- relative values.");
-            this.NewARRelative.UseVisualStyleBackColor = true;
-            this.NewARRelative.CheckedChanged += new System.EventHandler(this.NewARRelative_CheckedChanged);
-            // 
             // NewCSRelative
             // 
             this.NewCSRelative.AutoSize = true;
             this.NewCSRelative.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewCSRelative.Location = new System.Drawing.Point(297, 66);
+            this.NewCSRelative.Location = new System.Drawing.Point(297, 67);
             this.NewCSRelative.Name = "NewCSRelative";
             this.NewCSRelative.Size = new System.Drawing.Size(65, 17);
             this.NewCSRelative.TabIndex = 4;
@@ -713,7 +686,7 @@
             // 
             this.NewHPRelative.AutoSize = true;
             this.NewHPRelative.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewHPRelative.Location = new System.Drawing.Point(297, 19);
+            this.NewHPRelative.Location = new System.Drawing.Point(297, 16);
             this.NewHPRelative.Name = "NewHPRelative";
             this.NewHPRelative.Size = new System.Drawing.Size(65, 17);
             this.NewHPRelative.TabIndex = 1;
@@ -721,6 +694,21 @@
             this.HoverToolTip.SetToolTip(this.NewHPRelative, "Modify maps using +/- relative values.");
             this.NewHPRelative.UseVisualStyleBackColor = true;
             this.NewHPRelative.CheckedChanged += new System.EventHandler(this.NewHPRelative_CheckedChanged);
+            // 
+            // NewARRelative
+            // 
+            this.NewARRelative.AutoSize = true;
+            this.NewARRelative.Checked = true;
+            this.NewARRelative.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.NewARRelative.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewARRelative.Location = new System.Drawing.Point(297, 169);
+            this.NewARRelative.Name = "NewARRelative";
+            this.NewARRelative.Size = new System.Drawing.Size(65, 17);
+            this.NewARRelative.TabIndex = 7;
+            this.NewARRelative.Text = "Relative";
+            this.HoverToolTip.SetToolTip(this.NewARRelative, "Modify maps using +/- relative values.");
+            this.NewARRelative.UseVisualStyleBackColor = true;
+            this.NewARRelative.CheckedChanged += new System.EventHandler(this.NewARRelative_CheckedChanged);
             // 
             // BatchfileSaveDialog
             // 
@@ -755,7 +743,7 @@
             this.BatchfileGroup.Controls.Add(this.BatchfileSaveButton);
             this.BatchfileGroup.Controls.Add(this.BatchfileInfoLabel);
             this.BatchfileGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BatchfileGroup.Location = new System.Drawing.Point(12, 605);
+            this.BatchfileGroup.Location = new System.Drawing.Point(12, 615);
             this.BatchfileGroup.Name = "BatchfileGroup";
             this.BatchfileGroup.Size = new System.Drawing.Size(456, 62);
             this.BatchfileGroup.TabIndex = 13;
@@ -766,7 +754,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(481, 709);
+            this.ClientSize = new System.Drawing.Size(481, 721);
             this.Controls.Add(this.OldMapsGroup);
             this.Controls.Add(this.DirectoryGroup);
             this.Controls.Add(this.DubuInfoLabel);
@@ -779,18 +767,18 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(497, 748);
+            this.MinimumSize = new System.Drawing.Size(497, 760);
             this.Name = "MapSettingsCustomizerForm";
             this.Text = "osu! Map Settings Customizer 2.0";
             this.OldMapsGroup.ResumeLayout(false);
             this.OldMapsGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ToOldODBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToOldCSBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ToOldARBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ToOldHPBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToOldARBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FromOldARBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromOldODBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromOldCSBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FromOldARBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FromOldHPBar)).EndInit();
             this.DirectoryGroup.ResumeLayout(false);
             this.DirectoryGroup.PerformLayout();
@@ -860,7 +848,6 @@
         internal System.Windows.Forms.TextBox NameInputBox;
         internal System.Windows.Forms.Button ProcessMapsButton;
         internal System.Windows.Forms.GroupBox NewMapsGroup;
-        internal System.Windows.Forms.CheckBox IncludeOldMaps;
         internal System.Windows.Forms.CheckBox NewODRelative;
         internal System.Windows.Forms.CheckBox NewARRelative;
         internal System.Windows.Forms.CheckBox NewCSRelative;

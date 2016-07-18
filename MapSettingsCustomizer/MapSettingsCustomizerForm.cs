@@ -54,25 +54,47 @@ namespace MapSettingsCustomizer
             double fromCS = FromOldCSBar.Value / 10.0;
             double toCS = ToOldCSBar.Value / 10.0;
 
-            double fromAR = FromOldARBar.Value / 10.0;
-            double toAR = ToOldARBar.Value / 10.0;
-
             double fromOD = FromOldODBar.Value / 10.0;
             double toOD = ToOldODBar.Value / 10.0;
 
+            double fromAR = FromOldARBar.Value / 10.0;
+            double toAR = ToOldARBar.Value / 10.0;
+
             double newHP = Convert.ToDouble(NewHPBox.Text);
             double newCS = Convert.ToDouble(NewCSBox.Text);
-            double newAR = Convert.ToDouble(NewARBox.Text);
             double newOD = Convert.ToDouble(NewODBox.Text);
+            double newAR = Convert.ToDouble(NewARBox.Text);
 
             bool relHP = NewHPRelative.Checked;
             bool relCS = NewCSRelative.Checked;
-            bool relAR = NewARRelative.Checked;
             bool relOD = NewODRelative.Checked;
+            bool relAR = NewARRelative.Checked;
 
-            bool oldMaps = IncludeOldMaps.Checked;
+            string args = "";
 
-            string args = "-" + mode + " -name " + name + " -path " + path + " -fromHP " + fromHP + " -toHP " + toHP + " -fromCS " + fromCS + " -toCS " + toCS + " -fromAR " + fromAR + " -toAR " + toAR + " -fromOD " + fromOD + " -toOD " + toOD + " -newHP " + newHP + " -newCS " + newCS + " -newAR " + newAR + " -newOD " + newOD + " -relHP " + relHP + " -relCS " + relCS + " -relAR " + relAR + " -relOD " + relOD + " -oldMaps " + oldMaps;
+            args += "-" + mode + " -name " + name + " -path " + path;
+
+            if (fromHP > 0) { args += " -fromHP " + fromHP; }
+            if (toHP < 10) { args += " -toHP " + toHP; }
+
+            if (fromCS > 0) { args += " -fromCS " + fromCS; }
+            if (toCS < 10) { args += " -toCS " + toCS; }
+
+            if (fromOD > 0) { args += " -fromOD " + fromOD; }
+            if (toOD < 10) { args += " -toOD " + toOD; }
+
+            if (fromAR > 0) { args += " -fromAR " + fromAR; }
+            if (toAR < 10) { args += " -toAR " + toAR; }
+
+            args += " -newHP " + newHP
+                + " -newCS " + newCS
+                + " -newOD " + newOD
+                + " -newAR " + newAR;
+
+            if (relHP) { args += " -relHP " + relHP; }
+            if (relCS) { args += " -relCS " + relCS; }
+            if (relOD) { args += " -relOD " + relOD; }
+            if (relAR) { args += " -relAR " + relAR; }
 
             return (args);
         }
@@ -110,7 +132,7 @@ namespace MapSettingsCustomizer
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Error: " + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error:\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             Console.WriteLine("Cancelled");
                         }
                     }
@@ -133,7 +155,7 @@ namespace MapSettingsCustomizer
         {
             try
             {
-                string batchfile = ("@ECHO OFF" + Environment.NewLine + "\"" + Application.ExecutablePath + "\"" + " " + ConstructArgs() + Environment.NewLine + "pause").Trim();
+                string batchfile = ("@ECHO OFF\r\n\"" + Application.ExecutablePath + "\" " + ConstructArgs() + "\r\npause").Trim();
                 File.WriteAllText(BatchfileSaveDialog.FileName, batchfile);
             }
             catch (Exception ex)
@@ -146,11 +168,6 @@ namespace MapSettingsCustomizer
         private void BatchfileSaveButton_Click(object sender, EventArgs e)
         {
             BatchfileSaveDialog.ShowDialog();
-        }
-
-        private void NameInputBox_TextChanged(object sender, EventArgs e)
-        {
-            NameInputBox.Text = NameInputBox.Text.Replace(" ", "");
         }
 
         private void NewHPRelative_CheckedChanged(object sender, EventArgs e)
@@ -181,20 +198,6 @@ namespace MapSettingsCustomizer
             }
         }
 
-        private void NewARRelative_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((NewARRelative.Checked))
-            {
-                NewARBar.Enabled = false;
-                NewARBox.Text = "0";
-            }
-            else
-            {
-                NewARBar.Enabled = true;
-                NewARBox.Text = Convert.ToString(NewARBar.Value / 10.0);
-            }
-        }
-
         private void NewODRelative_CheckedChanged(object sender, EventArgs e)
         {
             if ((NewODRelative.Checked))
@@ -206,6 +209,20 @@ namespace MapSettingsCustomizer
             {
                 NewODBar.Enabled = true;
                 NewODBox.Text = Convert.ToString(NewODBar.Value / 10.0);
+            }
+        }
+
+        private void NewARRelative_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((NewARRelative.Checked))
+            {
+                NewARBar.Enabled = false;
+                NewARBox.Text = "0";
+            }
+            else
+            {
+                NewARBar.Enabled = true;
+                NewARBox.Text = Convert.ToString(NewARBar.Value / 10.0);
             }
         }
 
@@ -227,6 +244,15 @@ namespace MapSettingsCustomizer
             FromOldCSLabel.Text = "From " + FromOldCSBar.Value / 10.0;
         }
 
+        private void FromOldODBar_Scroll(object sender, EventArgs e)
+        {
+            if (FromOldODBar.Value > ToOldODBar.Value)
+            {
+                FromOldODBar.Value = ToOldODBar.Value;
+            }
+            FromOldODLabel.Text = "From " + FromOldODBar.Value / 10.0;
+        }
+
         private void FromOldARBar_Scroll(object sender, EventArgs e)
         {
             if (FromOldARBar.Value > ToOldARBar.Value)
@@ -236,14 +262,6 @@ namespace MapSettingsCustomizer
             FromOldARLabel.Text = "From " + FromOldARBar.Value / 10.0;
         }
 
-        private void FromOldODBar_Scroll(object sender, EventArgs e)
-        {
-            if (FromOldODBar.Value > ToOldODBar.Value)
-            {
-                FromOldODBar.Value = ToOldODBar.Value;
-            }
-            FromOldODLabel.Text = "From " + FromOldODBar.Value / 10.0;
-        }
         private void ToOldHPBar_Scroll(object sender, EventArgs e)
         {
             if (ToOldHPBar.Value < FromOldHPBar.Value)
@@ -262,15 +280,6 @@ namespace MapSettingsCustomizer
             ToOldCSLabel.Text = "To " + ToOldCSBar.Value / 10.0;
         }
 
-        private void ToOldARBar_Scroll(object sender, EventArgs e)
-        {
-            if (ToOldARBar.Value < FromOldARBar.Value)
-            {
-                ToOldARBar.Value = FromOldARBar.Value;
-            }
-            ToOldARLabel.Text = "To " + ToOldARBar.Value / 10.0;
-        }
-
         private void ToOldODBar_Scroll(object sender, EventArgs e)
         {
             if (ToOldODBar.Value < FromOldODBar.Value)
@@ -278,6 +287,15 @@ namespace MapSettingsCustomizer
                 ToOldODBar.Value = FromOldODBar.Value;
             }
             ToOldODLabel.Text = "To " + ToOldODBar.Value / 10.0;
+        }
+
+        private void ToOldARBar_Scroll(object sender, EventArgs e)
+        {
+            if (ToOldARBar.Value < FromOldARBar.Value)
+            {
+                ToOldARBar.Value = FromOldARBar.Value;
+            }
+            ToOldARLabel.Text = "To " + ToOldARBar.Value / 10.0;
         }
 
         private void NewHPBar_Scroll(object sender, EventArgs e)
@@ -290,14 +308,14 @@ namespace MapSettingsCustomizer
             NewCSBox.Text = Convert.ToString(NewCSBar.Value / 10.0);
         }
 
-        private void NewARBar_Scroll(object sender, EventArgs e)
-        {
-            NewARBox.Text = Convert.ToString(NewARBar.Value / 10.0);
-        }
-
         private void NewODBar_Scroll(object sender, EventArgs e)
         {
             NewODBox.Text = Convert.ToString(NewODBar.Value / 10.0);
+        }
+
+        private void NewARBar_Scroll(object sender, EventArgs e)
+        {
+            NewARBox.Text = Convert.ToString(NewARBar.Value / 10.0);
         }
 
         private void DirectoryDetectButton_Click(object sender, EventArgs e)
@@ -312,6 +330,7 @@ namespace MapSettingsCustomizer
                 MessageBox.Show("Can't find osu! folder from registry!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void NewHPBox_TextChanged(object sender, EventArgs e)
         {
             if (NewHPRelative.Checked == false)
@@ -356,6 +375,28 @@ namespace MapSettingsCustomizer
             }
         }
 
+        private void NewODBox_TextChanged(object sender, EventArgs e)
+        {
+            if (NewODRelative.Checked == false)
+            {
+                double d = 0;
+                double.TryParse(NewODBox.Text, out d);
+                if (d > 10)
+                {
+                    d = 10;
+                    NewODBox.Text = "10";
+                    NewODBox.SelectAll();
+                }
+                if (d < 0)
+                {
+                    d = 0;
+                    NewODBox.Text = "0";
+                    NewODBox.SelectAll();
+                }
+                NewODBar.Value = Convert.ToInt32(d * 10);
+            }
+        }
+
         private void NewARBox_TextChanged(object sender, EventArgs e)
         {
             if (NewARRelative.Checked == false)
@@ -378,31 +419,6 @@ namespace MapSettingsCustomizer
             }
         }
 
-        private void NewODBox_TextChanged(object sender, EventArgs e)
-        {
-            if (NewODRelative.Checked == false)
-            {
-                double d = 0;
-                double.TryParse(NewODBox.Text, out d);
-                if (d > 10)
-                {
-                    d = 10;
-                    NewODBox.Text = "10";
-                    NewODBox.SelectAll();
-                }
-                if (d < 0)
-                {
-                    d = 0;
-                    NewODBox.Text = "0";
-                    NewODBox.SelectAll();
-                }
-                NewODBar.Value = Convert.ToInt32(d * 10);
-            }
-        }
-        private void IncludeOldMaps_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
         private void DubuLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://osu.ppy.sh/u/Dubu");
