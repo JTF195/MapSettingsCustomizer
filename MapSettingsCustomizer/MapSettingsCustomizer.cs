@@ -57,96 +57,80 @@ namespace MapSettingsCustomizer
 
                 int mapVersion = 0;
 
-                string nextArg = "";
+                string prevArg = "";
 
                 //split arg array into "-switch arg"
                 foreach (string arg in args)
                 {
-                    if (nextArg == "-create")
+                    switch (prevArg)
                     {
-                        mode = "create";
+                        case "-create":
+                            mode = "create";
+                            break;
+                        case "-update":
+                            mode = "update";
+                            break;
+                        case "-delete":
+                            mode = "delete";
+                            break;
+                        case "-name":
+                            name = arg;
+                            break;
+                        case "-path":
+                            path = arg;
+                            break;
+                        case "-fromHP":
+                            fromHP = Convert.ToDouble(arg);
+                            break;
+                        case "-toHP":
+                            toHP = Convert.ToDouble(arg);
+                            break;
+                        case "-fromCS":
+                            fromCS = Convert.ToDouble(arg);
+                            break;
+                        case "-toCS":
+                            toCS = Convert.ToDouble(arg);
+                            break;
+                        case "-fromOD":
+                            fromOD = Convert.ToDouble(arg);
+                            break;
+                        case "-toOD":
+                            toOD = Convert.ToDouble(arg);
+                            break;
+                        case "-fromAR":
+                            fromAR = Convert.ToDouble(arg);
+                            break;
+                        case "-toAR":
+                            toAR = Convert.ToDouble(arg);
+                            break;
+                        case "-newHP":
+                            newHP = Convert.ToDouble(arg);
+                            break;
+                        case "-newCS":
+                            newCS = Convert.ToDouble(arg);
+                            break;
+                        case "-newOD":
+                            newOD = Convert.ToDouble(arg);
+                            break;
+                        case "-newAR":
+                            newAR = Convert.ToDouble(arg);
+                            break;
+                        case "-relHP":
+                            relHP = Convert.ToBoolean(arg);
+                            break;
+                        case "-relCS":
+                            relCS = Convert.ToBoolean(arg);
+                            break;
+                        case "-relOD":
+                            relOD = Convert.ToBoolean(arg);
+                            break;
+                        case "-relAR":
+                            relAR = Convert.ToBoolean(arg);
+                            break;
+                        default:
+                            break;
                     }
-                    if (nextArg == "-update")
-                    {
-                        mode = "update";
-                    }
-                    if (nextArg == "-delete")
-                    {
-                        mode = "delete";
-                    }
-                    if (nextArg == "-name")
-                    {
-                        name = arg;
-                    }
-                    if (nextArg == "-path")
-                    {
-                        path = arg;
-                    }
-                    if (nextArg == "-fromHP")
-                    {
-                        fromHP = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-toHP")
-                    {
-                        toHP = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-fromCS")
-                    {
-                        fromCS = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-toCS")
-                    {
-                        toCS = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-fromOD")
-                    {
-                        fromOD = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-toOD")
-                    {
-                        toOD = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-fromAR")
-                    {
-                        fromAR = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-toAR")
-                    {
-                        toAR = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-newHP")
-                    {
-                        newHP = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-newCS")
-                    {
-                        newCS = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-newOD")
-                    {
-                        newOD = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-newAR")
-                    {
-                        newAR = Convert.ToDouble(arg);
-                    }
-                    if (nextArg == "-relHP")
-                    {
-                        relHP = Convert.ToBoolean(arg);
-                    }
-                    if (nextArg == "-relCS")
-                    {
-                        relCS = Convert.ToBoolean(arg);
-                    }
-                    if (nextArg == "-relOD")
-                    {
-                        relOD = Convert.ToBoolean(arg);
-                    }
-                    if (nextArg == "-relAR")
-                    {
-                        relAR = Convert.ToBoolean(arg);
-                    }
-                    nextArg = arg;
+                    prevArg = arg;
                 }
                 List<string> originalBeatmaps = new List<string>();
                 List<string> missingBeatmaps = new List<string>();
