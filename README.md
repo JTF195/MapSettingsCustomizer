@@ -9,7 +9,7 @@ I also translated it into C# because A) it'll be easier to port, and B) why not.
 
 UI Preview:
 
-![UI Preview](https://puu.sh/vfXik/5e99ffa44f.png)
+![UI Preview](https://i.imgur.com/RQiiTec.png)
 
 Change log:
 
