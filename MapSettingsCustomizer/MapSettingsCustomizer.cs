@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -191,7 +188,7 @@ namespace MapSettingsCustomizer
                 {
                     case "create":
                         #region
-                        Console.Title = ("Creating beatmaps");
+                        Console.Title = "Creating beatmaps";
                         foreach (string currentBeatmap in missingBeatmaps)
                         {
                             string beatmapContents = File.ReadAllText(currentBeatmap);
@@ -296,7 +293,7 @@ namespace MapSettingsCustomizer
                                 }
                             }
                             completedFiles += 1;
-                            filesPercent = (completedFiles / missingFiles * 100.00);
+                            filesPercent = completedFiles / missingFiles * 100.00;
                             Console.SetCursorPosition(0, 5);
                             Console.WriteLine("Creating new beatmaps - {0}/{1} - {2:00.00}% complete.", completedFiles, missingFiles, filesPercent);
                             Application.DoEvents();
@@ -338,7 +335,7 @@ namespace MapSettingsCustomizer
                                 failedFiles += 1;
                             }
                             completedFiles += 1;
-                            filesPercent = (completedFiles / matchingFiles * 100.00);
+                            filesPercent = completedFiles / matchingFiles * 100.00;
                             Console.SetCursorPosition(0, 5);
                             Console.WriteLine("Deleting beatmaps - {0}/{1} - {2:00.00}% complete.", completedFiles, matchingFiles, filesPercent);
                             Application.DoEvents();

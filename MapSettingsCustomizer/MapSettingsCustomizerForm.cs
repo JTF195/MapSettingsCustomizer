@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MapSettingsCustomizer
@@ -22,7 +17,7 @@ namespace MapSettingsCustomizer
 
         private void DirectoryBrowseButton_Click(object sender, EventArgs e)
         {
-            if ((osuDirectoryBrowseDialog.ShowDialog() == DialogResult.OK))
+            if (osuDirectoryBrowseDialog.ShowDialog() == DialogResult.OK)
             {
                 DirectoryInputBox.Text = osuDirectoryBrowseDialog.SelectedPath;
             }
@@ -46,7 +41,7 @@ namespace MapSettingsCustomizer
             }
 
             string name = NameInputBox.Text;
-            string path = ("\"" + DirectoryInputBox.Text + "\"");
+            string path = "\"" + DirectoryInputBox.Text + "\"";
 
             double fromHP = FromOldHPBar.Value / 10.0;
             double toHP = ToOldHPBar.Value / 10.0;
@@ -96,15 +91,15 @@ namespace MapSettingsCustomizer
             if (relOD) { args += " -relOD " + relOD; }
             if (relAR) { args += " -relAR " + relAR; }
 
-            return (args);
+            return args;
         }
 
         private void ProcessMapsButton_Click(object sender, EventArgs e)
         {
             Hide();
-            if ((DirectoryInputBox.Text.Length > 0))
+            if (DirectoryInputBox.Text.Length > 0)
             {
-                if ((NameInputBox.Text.Length > 0))
+                if (NameInputBox.Text.Length > 0)
                 {
                     DialogResult answer = DialogResult.No;
                     if (CreateModeRadioButton.Checked == true)
@@ -172,7 +167,7 @@ namespace MapSettingsCustomizer
 
         private void NewHPRelative_CheckedChanged(object sender, EventArgs e)
         {
-            if ((NewHPRelative.Checked))
+            if (NewHPRelative.Checked)
             {
                 NewHPBar.Enabled = false;
                 NewHPBox.Text = "0";
@@ -186,7 +181,7 @@ namespace MapSettingsCustomizer
 
         private void NewCSRelative_CheckedChanged(object sender, EventArgs e)
         {
-            if ((NewCSRelative.Checked))
+            if (NewCSRelative.Checked)
             {
                 NewCSBar.Enabled = false;
                 NewCSBox.Text = "0";
@@ -200,7 +195,7 @@ namespace MapSettingsCustomizer
 
         private void NewODRelative_CheckedChanged(object sender, EventArgs e)
         {
-            if ((NewODRelative.Checked))
+            if (NewODRelative.Checked)
             {
                 NewODBar.Enabled = false;
                 NewODBox.Text = "0";
@@ -214,7 +209,7 @@ namespace MapSettingsCustomizer
 
         private void NewARRelative_CheckedChanged(object sender, EventArgs e)
         {
-            if ((NewARRelative.Checked))
+            if (NewARRelative.Checked)
             {
                 NewARBar.Enabled = false;
                 NewARBox.Text = "0";
